@@ -6,8 +6,10 @@ import structs.BoardItemGroup
 
 object BoardUtil {
     fun newBoard(): Board {
-        val width = 11
-        val height = 5
+        return newBoard(11, 5)
+    }
+
+    fun newBoard(width: Int = 11, height: Int = 5): Board {
         val a = Array(height) {
             Array(width) {
                 BoardItem.NOTHING
