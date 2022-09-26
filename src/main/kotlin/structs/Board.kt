@@ -3,12 +3,12 @@ package structs
 class Board(val width: Int, val height: Int, val board: Array<Array<BoardItem>>) {
     val history = emptyArray<Pair<Pair<Int, Int>, BoardItemGroup>>().toMutableList()
 
-    operator fun get(x: Int, y: Int): BoardItem {
-        return if (x < width && y < height) board[x][y] else BoardItem.OUT_OF_BOUND
+    operator fun get(outer: Int, inner: Int): BoardItem {
+        return if (outer < height && inner < width) board[outer][inner] else BoardItem.OUT_OF_BOUND
     }
 
-    operator fun set(x: Int, y: Int, t: BoardItem) {
-        board[x][y] = t
+    operator fun set(outer: Int, inner: Int, t: BoardItem) {
+        board[outer][inner] = t
     }
 
     override fun equals(other: Any?): Boolean {

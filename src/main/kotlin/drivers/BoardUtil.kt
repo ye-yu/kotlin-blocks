@@ -33,38 +33,71 @@ object BoardUtil {
 
     fun putBoardItemGroup(board: Board, item: BoardItemGroup, x: Int, y: Int, undo: Boolean = false) {
         if (!undo) {
-            check(item.positions.all { board[it.first + x, it.second + y] == BoardItem.NOTHING }) {
-                "Collision at ${
-                    item.positions.joinToString(", ") {
-                        "(${Pair(it.first + x, it.second + y).toList().joinToString(", ")})"
-                    }
-                }"
-            }
-
-            check(item.positions.none { board[it.first + x, it.second + y] == BoardItem.OUT_OF_BOUND }) {
-                "Out of bound at $x, $y"
-            }
+            canPut(board, item, x, y)
         }
 
         val itemToPut = if (undo) BoardItem.NOTHING else item.item
         item.positions.forEach {
-            val deltaX = it.second
             val deltaY = it.first
-            val xPos = deltaX + x
+            val deltaX = it.second
             val yPos = deltaY + y
-            board[xPos, yPos] = itemToPut
+            val xPos = deltaX + x
+            board[yPos, xPos] = itemToPut
         }
 
-        board.history += Pair(Pair(x, y), item)
+        if (!undo) {
+            board.history += Pair(Pair(y, x), item)
+        }
+    }
+
+    @Suppress("MemberVisibilityCanBePrivate")
+    fun canPut(board: Board, item: BoardItemGroup, x: Int, y: Int) {
+        check(item.positions.all { board[it.first + y, it.second + x] == BoardItem.NOTHING }) {
+            "Collision at ${
+                item.positions.joinToString(", ") {
+                    "(${Pair(it.first + y, it.second + x).toList().joinToString(", ")})"
+                }
+            }"
+        }
+
+        check(item.positions.none { board[it.first + y, it.second + x] == BoardItem.OUT_OF_BOUND }) {
+            "Out of bound at $x, $y"
+        }
+
+        check(
+            !board.history.foldRight(emptySet<Int>().toMutableSet()) { it, acc ->
+                acc += it.second.familyGroup
+                acc
+            }.contains(item.familyGroup)
+        ) {
+            "Board already have ${item.familyGroup} piece group"
+        }
+    }
+
+    fun canPutSuppressed(board: Board, item: BoardItemGroup, x: Int, y: Int): Boolean {
+        return try {
+            canPut(board, item, x, y)
+            true
+        } catch (_ignored: Exception) {
+            false
+        }
     }
 
     fun undoLastPosition(board: Board) {
         val last = board.history.removeLast()
         last.first.let {
-            val x = it.first
-            val y = it.second
+            val y = it.first
+            val x = it.second
             val shape = last.second
             putBoardItemGroup(board, shape, x, y, true)
+        }
+    }
+
+    fun reverseMapSnapshot(board: Board): List<Pair<BoardItem, Pair<Int, Int>>> {
+        return board.board.flatMapIndexed { y, row ->
+            row.mapIndexed { x, boardItem ->
+                Pair(boardItem, Pair(x, y))
+            }
         }
     }
 }

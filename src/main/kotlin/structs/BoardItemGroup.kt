@@ -13,9 +13,9 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
     O_L_0(
         listOf(
             Pair(0, 0),
-            Pair(1, 0),
-            Pair(2, 0),
-            Pair(0, 1)
+            Pair(0, 1),
+            Pair(0, 2),
+            Pair(1, 0)
         ),
         BoardItem.ORANGE,
         0
@@ -33,9 +33,9 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     O_L_1(
         listOf(
-            Pair(1, 0),
+            Pair(0, 1),
             Pair(1, 1),
-            Pair(1, 2),
+            Pair(2, 1),
             Pair(0, 0)
         ),
         BoardItem.ORANGE,
@@ -53,10 +53,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     O_L_2(
         listOf(
-            Pair(2, 1),
+            Pair(1, 2),
             Pair(1, 1),
-            Pair(0, 1),
-            Pair(2, 0)
+            Pair(1, 0),
+            Pair(0, 2)
         ),
         BoardItem.ORANGE,
         0
@@ -74,10 +74,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     O_L_3(
         listOf(
-            Pair(0, 2),
-            Pair(0, 1),
+            Pair(2, 0),
+            Pair(1, 0),
             Pair(0, 0),
-            Pair(1, 2)
+            Pair(2, 1)
         ),
         BoardItem.ORANGE,
         0
@@ -96,9 +96,9 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
     O_L_4(
         listOf(
             Pair(0, 0),
-            Pair(0, 1),
-            Pair(0, 2),
-            Pair(1, 0)
+            Pair(1, 0),
+            Pair(2, 0),
+            Pair(0, 1)
         ),
         BoardItem.ORANGE,
         0
@@ -115,10 +115,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     O_L_5(
         listOf(
-            Pair(2, 0),
-            Pair(1, 0),
+            Pair(0, 2),
+            Pair(0, 1),
             Pair(0, 0),
-            Pair(2, 1)
+            Pair(1, 2)
         ),
         BoardItem.ORANGE,
         0
@@ -136,10 +136,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     O_L_6(
         listOf(
-            Pair(1, 2),
+            Pair(2, 1),
             Pair(1, 1),
-            Pair(1, 0),
-            Pair(0, 2)
+            Pair(0, 1),
+            Pair(2, 0)
         ),
         BoardItem.ORANGE,
         0
@@ -156,9 +156,9 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     O_L_7(
         listOf(
-            Pair(0, 1),
+            Pair(1, 0),
             Pair(1, 1),
-            Pair(2, 1),
+            Pair(1, 2),
             Pair(0, 0)
         ),
         BoardItem.ORANGE,
@@ -177,10 +177,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
     G_L_0(
         listOf(
             Pair(0, 0),
-            Pair(1, 0),
+            Pair(0, 1),
             Pair(1, 1),
-            Pair(2, 1),
-            Pair(3, 1)
+            Pair(1, 2),
+            Pair(1, 3)
         ),
         BoardItem.GREEN,
         1
@@ -199,11 +199,11 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     G_L_1(
         listOf(
-            Pair(1, 0),
-            Pair(1, 1),
             Pair(0, 1),
-            Pair(0, 2),
-            Pair(0, 3)
+            Pair(1, 1),
+            Pair(1, 0),
+            Pair(2, 0),
+            Pair(3, 0)
         ),
         BoardItem.GREEN,
         1
@@ -220,10 +220,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     G_L_2(
         listOf(
-            Pair(3, 1),
-            Pair(2, 1),
-            Pair(2, 0),
-            Pair(1, 0),
+            Pair(1, 3),
+            Pair(1, 2),
+            Pair(0, 2),
+            Pair(0, 1),
             Pair(0, 0)
         ),
         BoardItem.GREEN,
@@ -243,11 +243,11 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     G_L_3(
         listOf(
-            Pair(0, 3),
-            Pair(0, 2),
-            Pair(1, 2),
+            Pair(3, 0),
+            Pair(2, 0),
+            Pair(2, 1),
             Pair(1, 1),
-            Pair(1, 0)
+            Pair(0, 1)
         ),
         BoardItem.GREEN,
         1
@@ -267,10 +267,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
     G_L_4(
         listOf(
             Pair(0, 0),
-            Pair(0, 1),
+            Pair(1, 0),
             Pair(1, 1),
-            Pair(1, 2),
-            Pair(1, 3)
+            Pair(2, 1),
+            Pair(3, 1)
         ),
         BoardItem.GREEN,
         1
@@ -287,11 +287,11 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     G_L_5(
         listOf(
-            Pair(3, 0),
-            Pair(2, 0),
-            Pair(2, 1),
+            Pair(0, 3),
+            Pair(0, 2),
+            Pair(1, 2),
             Pair(1, 1),
-            Pair(0, 1)
+            Pair(1, 0)
         ),
         BoardItem.GREEN,
         1
@@ -310,10 +310,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     G_L_6(
         listOf(
-            Pair(1, 3),
-            Pair(1, 2),
-            Pair(0, 2),
-            Pair(0, 1),
+            Pair(3, 1),
+            Pair(2, 1),
+            Pair(2, 0),
+            Pair(1, 0),
             Pair(0, 0)
         ),
         BoardItem.GREEN,
@@ -331,11 +331,11 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     G_L_7(
         listOf(
-            Pair(0, 1),
-            Pair(1, 1),
             Pair(1, 0),
-            Pair(2, 0),
-            Pair(3, 0)
+            Pair(1, 1),
+            Pair(0, 1),
+            Pair(0, 2),
+            Pair(0, 3)
         ),
         BoardItem.GREEN,
         1
@@ -353,10 +353,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
     R_P_0(
         listOf(
             Pair(0, 0),
-            Pair(1, 0),
             Pair(0, 1),
+            Pair(1, 0),
             Pair(1, 1),
-            Pair(2, 1)
+            Pair(1, 2)
         ),
         BoardItem.RED,
         2
@@ -374,11 +374,11 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     R_P_1(
         listOf(
-            Pair(1, 0),
+            Pair(0, 1),
             Pair(1, 1),
             Pair(0, 0),
-            Pair(0, 1),
-            Pair(0, 2)
+            Pair(1, 0),
+            Pair(2, 0)
         ),
         BoardItem.RED,
         2
@@ -395,10 +395,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     R_P_2(
         listOf(
-            Pair(2, 1),
+            Pair(1, 2),
             Pair(1, 1),
-            Pair(2, 0),
-            Pair(1, 0),
+            Pair(0, 2),
+            Pair(0, 1),
             Pair(0, 0)
         ),
         BoardItem.RED,
@@ -417,11 +417,11 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     R_P_3(
         listOf(
-            Pair(0, 2),
-            Pair(0, 1),
-            Pair(1, 2),
+            Pair(2, 0),
+            Pair(1, 0),
+            Pair(2, 1),
             Pair(1, 1),
-            Pair(1, 0)
+            Pair(0, 1)
         ),
         BoardItem.RED,
         2
@@ -440,10 +440,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
     R_P_4(
         listOf(
             Pair(0, 0),
-            Pair(0, 1),
             Pair(1, 0),
+            Pair(0, 1),
             Pair(1, 1),
-            Pair(1, 2)
+            Pair(2, 1)
         ),
         BoardItem.RED,
         2
@@ -460,11 +460,11 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     R_P_5(
         listOf(
-            Pair(2, 0),
-            Pair(1, 0),
-            Pair(2, 1),
+            Pair(0, 2),
+            Pair(0, 1),
+            Pair(1, 2),
             Pair(1, 1),
-            Pair(0, 1)
+            Pair(1, 0)
         ),
         BoardItem.RED,
         2
@@ -482,10 +482,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     R_P_6(
         listOf(
-            Pair(1, 2),
+            Pair(2, 1),
             Pair(1, 1),
-            Pair(0, 2),
-            Pair(0, 1),
+            Pair(2, 0),
+            Pair(1, 0),
             Pair(0, 0)
         ),
         BoardItem.RED,
@@ -503,11 +503,11 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     R_P_7(
         listOf(
-            Pair(0, 1),
+            Pair(1, 0),
             Pair(1, 1),
             Pair(0, 0),
-            Pair(1, 0),
-            Pair(2, 0)
+            Pair(0, 1),
+            Pair(0, 2)
         ),
         BoardItem.RED,
         2
@@ -526,10 +526,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
     C_L_0(
         listOf(
             Pair(0, 0),
-            Pair(1, 0),
-            Pair(2, 0),
             Pair(0, 1),
-            Pair(0, 2)
+            Pair(0, 2),
+            Pair(1, 0),
+            Pair(2, 0)
         ),
         BoardItem.CYAN,
         3
@@ -547,10 +547,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     C_L_1(
         listOf(
-            Pair(2, 0),
-            Pair(2, 1),
+            Pair(0, 2),
+            Pair(1, 2),
             Pair(2, 2),
-            Pair(1, 0),
+            Pair(0, 1),
             Pair(0, 0)
         ),
         BoardItem.CYAN,
@@ -570,10 +570,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
     C_L_2(
         listOf(
             Pair(2, 2),
-            Pair(1, 2),
-            Pair(0, 2),
             Pair(2, 1),
-            Pair(2, 0)
+            Pair(2, 0),
+            Pair(1, 2),
+            Pair(0, 2)
         ),
         BoardItem.CYAN,
         3
@@ -591,10 +591,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     C_L_3(
         listOf(
-            Pair(0, 2),
-            Pair(0, 1),
+            Pair(2, 0),
+            Pair(1, 0),
             Pair(0, 0),
-            Pair(1, 2),
+            Pair(2, 1),
             Pair(2, 2)
         ),
         BoardItem.CYAN,
@@ -613,11 +613,11 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     G_T_0(
         listOf(
-            Pair(1, 0),
             Pair(0, 1),
+            Pair(1, 0),
             Pair(1, 1),
-            Pair(2, 1),
-            Pair(1, 2)
+            Pair(1, 2),
+            Pair(2, 1)
         ),
         BoardItem.PINK,
         4
@@ -637,10 +637,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
     B_L_0(
         listOf(
             Pair(0, 0),
-            Pair(0, 1),
-            Pair(0, 2),
-            Pair(0, 3),
-            Pair(1, 3)
+            Pair(1, 0),
+            Pair(2, 0),
+            Pair(3, 0),
+            Pair(3, 1)
         ),
         BoardItem.BLUE,
         5
@@ -657,11 +657,11 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     B_L_1(
         listOf(
-            Pair(3, 0),
-            Pair(2, 0),
-            Pair(1, 0),
+            Pair(0, 3),
+            Pair(0, 2),
+            Pair(0, 1),
             Pair(0, 0),
-            Pair(0, 1)
+            Pair(1, 0)
         ),
         BoardItem.BLUE,
         5
@@ -680,10 +680,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     B_L_2(
         listOf(
-            Pair(1, 3),
-            Pair(1, 2),
+            Pair(3, 1),
+            Pair(2, 1),
             Pair(1, 1),
-            Pair(1, 0),
+            Pair(0, 1),
             Pair(0, 0)
         ),
         BoardItem.BLUE,
@@ -701,11 +701,11 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     B_L_3(
         listOf(
-            Pair(0, 1),
+            Pair(1, 0),
             Pair(1, 1),
-            Pair(2, 1),
-            Pair(3, 1),
-            Pair(3, 0)
+            Pair(1, 2),
+            Pair(1, 3),
+            Pair(0, 3)
         ),
         BoardItem.BLUE,
         5
@@ -723,10 +723,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
     B_L_4(
         listOf(
             Pair(0, 0),
-            Pair(1, 0),
-            Pair(2, 0),
-            Pair(3, 0),
-            Pair(3, 1)
+            Pair(0, 1),
+            Pair(0, 2),
+            Pair(0, 3),
+            Pair(1, 3)
         ),
         BoardItem.BLUE,
         5
@@ -745,11 +745,11 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     B_L_5(
         listOf(
-            Pair(1, 0),
+            Pair(0, 1),
             Pair(1, 1),
-            Pair(1, 2),
-            Pair(1, 3),
-            Pair(0, 3)
+            Pair(2, 1),
+            Pair(3, 1),
+            Pair(3, 0)
         ),
         BoardItem.BLUE,
         5
@@ -766,10 +766,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     B_L_6(
         listOf(
-            Pair(3, 1),
-            Pair(2, 1),
+            Pair(1, 3),
+            Pair(1, 2),
             Pair(1, 1),
-            Pair(0, 1),
+            Pair(1, 0),
             Pair(0, 0)
         ),
         BoardItem.BLUE,
@@ -789,11 +789,11 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     B_L_7(
         listOf(
-            Pair(0, 3),
-            Pair(0, 2),
-            Pair(0, 1),
+            Pair(3, 0),
+            Pair(2, 0),
+            Pair(1, 0),
             Pair(0, 0),
-            Pair(1, 0)
+            Pair(0, 1)
         ),
         BoardItem.BLUE,
         5
@@ -813,9 +813,9 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
     P_I_0(
         listOf(
             Pair(0, 0),
-            Pair(0, 1),
-            Pair(0, 2),
-            Pair(0, 3)
+            Pair(1, 0),
+            Pair(2, 0),
+            Pair(3, 0)
         ),
         BoardItem.PURPLE,
         6
@@ -831,9 +831,9 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     P_I_1(
         listOf(
-            Pair(3, 0),
-            Pair(2, 0),
-            Pair(1, 0),
+            Pair(0, 3),
+            Pair(0, 2),
+            Pair(0, 1),
             Pair(0, 0)
         ),
         BoardItem.PURPLE,
@@ -854,10 +854,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
     P_K_0(
         listOf(
             Pair(0, 0),
-            Pair(0, 1),
+            Pair(1, 0),
             Pair(1, 1),
-            Pair(0, 2),
-            Pair(0, 3)
+            Pair(2, 0),
+            Pair(3, 0)
         ),
         BoardItem.PINK,
         7
@@ -874,10 +874,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     P_K_1(
         listOf(
-            Pair(3, 0),
-            Pair(2, 0),
-            Pair(2, 1),
-            Pair(1, 0),
+            Pair(0, 3),
+            Pair(0, 2),
+            Pair(1, 2),
+            Pair(0, 1),
             Pair(0, 0)
         ),
         BoardItem.PINK,
@@ -897,11 +897,11 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     P_K_2(
         listOf(
-            Pair(1, 3),
-            Pair(1, 2),
-            Pair(0, 2),
+            Pair(3, 1),
+            Pair(2, 1),
+            Pair(2, 0),
             Pair(1, 1),
-            Pair(1, 0)
+            Pair(0, 1)
         ),
         BoardItem.PINK,
         7
@@ -918,11 +918,11 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     P_K_3(
         listOf(
-            Pair(0, 1),
-            Pair(1, 1),
             Pair(1, 0),
-            Pair(2, 1),
-            Pair(3, 1)
+            Pair(1, 1),
+            Pair(0, 1),
+            Pair(1, 2),
+            Pair(1, 3)
         ),
         BoardItem.PINK,
         7
@@ -940,10 +940,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
     P_K_4(
         listOf(
             Pair(0, 0),
-            Pair(1, 0),
+            Pair(0, 1),
             Pair(1, 1),
-            Pair(2, 0),
-            Pair(3, 0)
+            Pair(0, 2),
+            Pair(0, 3)
         ),
         BoardItem.PINK,
         7
@@ -962,11 +962,11 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     P_K_5(
         listOf(
-            Pair(1, 0),
-            Pair(1, 1),
             Pair(0, 1),
-            Pair(1, 2),
-            Pair(1, 3)
+            Pair(1, 1),
+            Pair(1, 0),
+            Pair(2, 1),
+            Pair(3, 1)
         ),
         BoardItem.PINK,
         7
@@ -983,11 +983,11 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     P_K_6(
         listOf(
-            Pair(3, 1),
-            Pair(2, 1),
-            Pair(2, 0),
+            Pair(1, 3),
+            Pair(1, 2),
+            Pair(0, 2),
             Pair(1, 1),
-            Pair(0, 1)
+            Pair(1, 0)
         ),
         BoardItem.PINK,
         7
@@ -1006,10 +1006,10 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     P_K_7(
         listOf(
-            Pair(0, 3),
-            Pair(0, 2),
-            Pair(1, 2),
-            Pair(0, 1),
+            Pair(3, 0),
+            Pair(2, 0),
+            Pair(2, 1),
+            Pair(1, 0),
             Pair(0, 0)
         ),
         BoardItem.PINK,
@@ -1029,9 +1029,9 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
     M_M_0(
         listOf(
             Pair(0, 0),
-            Pair(0, 1),
+            Pair(1, 0),
             Pair(1, 1),
-            Pair(1, 2),
+            Pair(2, 1),
             Pair(2, 2)
         ),
         BoardItem.MAGENTA,
@@ -1050,11 +1050,11 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     M_M_1(
         listOf(
-            Pair(2, 0),
-            Pair(1, 0),
-            Pair(1, 1),
+            Pair(0, 2),
             Pair(0, 1),
-            Pair(0, 2)
+            Pair(1, 1),
+            Pair(1, 0),
+            Pair(2, 0)
         ),
         BoardItem.MAGENTA,
         8
@@ -1073,9 +1073,9 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
     M_M_2(
         listOf(
             Pair(2, 2),
-            Pair(2, 1),
+            Pair(1, 2),
             Pair(1, 1),
-            Pair(1, 0),
+            Pair(0, 1),
             Pair(0, 0)
         ),
         BoardItem.MAGENTA,
@@ -1094,11 +1094,11 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     M_M_3(
         listOf(
-            Pair(0, 2),
-            Pair(1, 2),
-            Pair(1, 1),
+            Pair(2, 0),
             Pair(2, 1),
-            Pair(2, 0)
+            Pair(1, 1),
+            Pair(1, 2),
+            Pair(0, 2)
         ),
         BoardItem.MAGENTA,
         8
@@ -1117,11 +1117,11 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
     Y_C_0(
         listOf(
             Pair(0, 0),
-            Pair(1, 0),
-            Pair(2, 0),
             Pair(0, 1),
             Pair(0, 2),
-            Pair(1, 2),
+            Pair(1, 0),
+            Pair(2, 0),
+            Pair(2, 1),
             Pair(2, 2)
         ),
         BoardItem.YELLOW,
@@ -1140,13 +1140,13 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     Y_C_1(
         listOf(
-            Pair(2, 0),
-            Pair(2, 1),
+            Pair(0, 2),
+            Pair(1, 2),
             Pair(2, 2),
-            Pair(1, 0),
-            Pair(0, 0),
             Pair(0, 1),
-            Pair(0, 2)
+            Pair(0, 0),
+            Pair(1, 0),
+            Pair(2, 0)
         ),
         BoardItem.YELLOW,
         9
@@ -1165,11 +1165,11 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
     Y_C_2(
         listOf(
             Pair(2, 2),
-            Pair(1, 2),
-            Pair(0, 2),
             Pair(2, 1),
             Pair(2, 0),
-            Pair(1, 0),
+            Pair(1, 2),
+            Pair(0, 2),
+            Pair(0, 1),
             Pair(0, 0)
         ),
         BoardItem.YELLOW,
@@ -1188,13 +1188,13 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
      */
     Y_C_3(
         listOf(
-            Pair(0, 2),
-            Pair(0, 1),
+            Pair(2, 0),
+            Pair(1, 0),
             Pair(0, 0),
-            Pair(1, 2),
-            Pair(2, 2),
             Pair(2, 1),
-            Pair(2, 0)
+            Pair(2, 2),
+            Pair(1, 2),
+            Pair(0, 2)
         ),
         BoardItem.YELLOW,
         9
@@ -1212,8 +1212,8 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
     G_O_0(
         listOf(
             Pair(0, 0),
-            Pair(1, 0),
             Pair(0, 1),
+            Pair(1, 0),
             Pair(1, 1)
         ),
         BoardItem.GREEN,
