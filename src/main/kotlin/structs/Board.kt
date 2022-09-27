@@ -4,7 +4,7 @@ class Board(val width: Int, val height: Int, val board: Array<Array<BoardItem>>)
     val history = emptyArray<Pair<Pair<Int, Int>, BoardItemPiece>>().toMutableList()
 
     operator fun get(outer: Int, inner: Int): BoardItem {
-        return if (outer < height && inner < width) board[outer][inner] else BoardItem.OUT_OF_BOUND
+        return if (outer < 0 || inner < 0) BoardItem.OUT_OF_BOUND else if (outer < height && inner < width) board[outer][inner] else BoardItem.OUT_OF_BOUND
     }
 
     operator fun set(outer: Int, inner: Int, t: BoardItem) {

@@ -18,9 +18,7 @@ object SearchUtil {
     private fun recursiveSearchSolution(board: Board, position: Pair<Int, Int>, depth: Int): Board? {
         val validPieces = BoardItemPiece.values().filter {
             BoardUtil.canPutSuppressed(board, it, position.first, position.second)
-        }.sortedBy {
-            random.nextDouble()
-        }
+        }.shuffled(random)
 
         if (validPieces.isEmpty()) return null
 
@@ -41,12 +39,14 @@ object SearchUtil {
             invalids.incrementAndGet()
             return null
         }
+        if (!BoardUtil.isBoardValid2(board)) {
+            invalids.incrementAndGet()
+            return null
+        }
         this.printSearchBoard(board, depth)
         val snapshot = BoardUtil.reverseMapSnapshot(board).filter {
             it.first == BoardItem.NOTHING
-        }.sortedBy {
-            random.nextDouble()
-        }
+        }.shuffled(random)
 
         if (snapshot.isEmpty()) return board
 

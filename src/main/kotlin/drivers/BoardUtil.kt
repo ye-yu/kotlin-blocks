@@ -114,4 +114,22 @@ object BoardUtil {
             }
         }
     }
+
+    /**
+     * Checks if the board nothing state has at least one nothing neighbor
+     */
+    fun isBoardValid2(board: Board): Boolean {
+        for ((outer, row) in board.board.withIndex()) {
+            for ((inner, item) in row.withIndex()) {
+                if (item != BoardItem.NOTHING) continue
+                var nothing = 0
+                if (board[outer - 1, inner] == BoardItem.NOTHING) ++nothing
+                if (board[outer + 1, inner] == BoardItem.NOTHING) ++nothing
+                if (board[outer, inner - 1] == BoardItem.NOTHING) ++nothing
+                if (board[outer, inner + 1] == BoardItem.NOTHING) ++nothing
+                if (nothing == 0) return false
+            }
+        }
+        return true
+    }
 }
