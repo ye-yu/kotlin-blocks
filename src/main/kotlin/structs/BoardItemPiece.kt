@@ -1,6 +1,6 @@
 package structs
 
-enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardItem, val familyGroup: Int) {
+enum class BoardItemPiece(val positions: List<Pair<Int, Int>>, val item: BoardItem, val familyGroup: Int) {
     /**
      * Colour: ORANGE
      *
@@ -1218,6 +1218,15 @@ enum class BoardItemGroup(val positions: List<Pair<Int, Int>>, val item: BoardIt
         ),
         BoardItem.GREEN,
         10
-    ),
+    );
 
+    companion object {
+        val PIECES_BY_FAMILY_GROUP =
+            BoardItemPiece.values().foldRight(mutableMapOf<Int, MutableList<BoardItemPiece>>()) { it, acc ->
+                val list = acc[it.familyGroup] ?: mutableListOf()
+                list += it
+                acc[it.familyGroup] = list
+                acc
+            }.toMap()
+    }
 }

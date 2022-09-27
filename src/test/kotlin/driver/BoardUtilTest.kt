@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import structs.Board
-import structs.BoardItemGroup
+import structs.BoardItemPiece
 
 class BoardUtilTest {
 
@@ -24,7 +24,7 @@ class BoardUtilTest {
 
     @Test
     fun canPutOnEmpty() {
-        val item = BoardItemGroup.C_L_3
+        val item = BoardItemPiece.C_L_3
         val position = Pair(2, 1)
 
         assertTrue(BoardUtil.canPutSuppressed(this.board, item, position.first, position.second))
@@ -32,9 +32,9 @@ class BoardUtilTest {
 
     @Test
     fun cannotPutOnOverlap() {
-        BoardUtil.putBoardItemGroup(board, BoardItemGroup.C_L_3, 2, 1)
+        BoardUtil.putBoardItemGroup(board, BoardItemPiece.C_L_3, 2, 1)
 
-        val item = BoardItemGroup.M_M_2
+        val item = BoardItemPiece.M_M_2
         val position = Pair(2, 0)
 
         assertFalse(BoardUtil.canPutSuppressed(this.board, item, position.first, position.second))

@@ -2,7 +2,7 @@ package drivers
 
 import structs.Board
 import structs.BoardItem
-import structs.BoardItemGroup
+import structs.BoardItemPiece
 
 object BoardUtil {
     fun newBoard(): Board {
@@ -31,7 +31,7 @@ object BoardUtil {
         }
     }
 
-    fun putBoardItemGroup(board: Board, item: BoardItemGroup, x: Int, y: Int, undo: Boolean = false) {
+    fun putBoardItemGroup(board: Board, item: BoardItemPiece, x: Int, y: Int, undo: Boolean = false) {
         if (!undo) {
             canPut(board, item, x, y)
         }
@@ -51,7 +51,7 @@ object BoardUtil {
     }
 
     @Suppress("MemberVisibilityCanBePrivate")
-    fun canPut(board: Board, item: BoardItemGroup, x: Int, y: Int) {
+    fun canPut(board: Board, item: BoardItemPiece, x: Int, y: Int) {
         check(item.positions.all { board[it.first + y, it.second + x] == BoardItem.NOTHING }) {
             "Collision at ${
                 item.positions.joinToString(", ") {
@@ -74,7 +74,7 @@ object BoardUtil {
         }
     }
 
-    fun canPutSuppressed(board: Board, item: BoardItemGroup, x: Int, y: Int): Boolean {
+    fun canPutSuppressed(board: Board, item: BoardItemPiece, x: Int, y: Int): Boolean {
         return try {
             canPut(board, item, x, y)
             true
@@ -97,6 +97,20 @@ object BoardUtil {
         return board.board.flatMapIndexed { y, row ->
             row.mapIndexed { x, boardItem ->
                 Pair(boardItem, Pair(x, y))
+            }
+        }
+    }
+
+    /**
+     * Checks if the board state can fill any of the remaining family pieces
+     */
+    fun isBoardValid(board: Board): Boolean {
+        val availablePieces = board.history.map { it.second.familyGroup }.toSortedSet()
+        return BoardItemPiece.PIECES_BY_FAMILY_GROUP.entries.all { (key, value) ->
+            availablePieces.contains(key) || ArrayUtil.anyIndexed(board.board.iterator()) { outer, row ->
+                ArrayUtil.anyIndexed(row.iterator()) { inner, _ ->
+                    value.any { canPutSuppressed(board, it, inner, outer) }
+                }
             }
         }
     }

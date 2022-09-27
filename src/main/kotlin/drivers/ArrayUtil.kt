@@ -56,6 +56,13 @@ object ArrayUtil {
         return source.hasCoordinatesGroup(combinations)
     }
 
+    fun <T> anyIndexed(list: Iterator<T>, indexMapper: (Int, T) -> Boolean): Boolean {
+        for ((i, v) in list.withIndex()) {
+            if (indexMapper(i, v)) return true
+        }
+        return false
+    }
+
 }
 
 private fun <E> List<List<Pair<E, E>>>.hasCoordinatesGroup(combinations: List<Pair<E, E>>): Boolean {

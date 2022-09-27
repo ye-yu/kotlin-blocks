@@ -1,7 +1,7 @@
 package structs
 
 class Board(val width: Int, val height: Int, val board: Array<Array<BoardItem>>) {
-    val history = emptyArray<Pair<Pair<Int, Int>, BoardItemGroup>>().toMutableList()
+    val history = emptyArray<Pair<Pair<Int, Int>, BoardItemPiece>>().toMutableList()
 
     operator fun get(outer: Int, inner: Int): BoardItem {
         return if (outer < height && inner < width) board[outer][inner] else BoardItem.OUT_OF_BOUND
