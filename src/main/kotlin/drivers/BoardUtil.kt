@@ -3,6 +3,7 @@ package drivers
 import structs.Board
 import structs.BoardItem
 import structs.BoardItemPiece
+import java.util.concurrent.atomic.AtomicInteger
 
 object BoardUtil {
     fun newBoard(): Board {
@@ -132,4 +133,107 @@ object BoardUtil {
         }
         return true
     }
+
+    fun isBoardValid3(board: Board): Boolean {
+        val allNothingness = board.board.flatMapIndexed { outer, row ->
+            row.mapIndexed { inner, item ->
+                Pair(Pair(outer, inner), item)
+            }.filter { it.second == BoardItem.NOTHING }
+        }
+        return false
+    }
+
+    fun getAllNothingnessGroups(board: Board): List<List<Pair<Int, Int>>> {
+        val dataPoints = board.board.flatMapIndexed { outer, row ->
+            row.mapIndexed { inner, item ->
+                Pair(Pair(outer, inner), item)
+            }.filter { it.second == BoardItem.NOTHING }
+        }
+
+        var shouldRepeat = true
+
+        // at first, set each spot into their own cluster
+        var cluster: MutableList<MutableList<Pair<Int, Int>>> =
+            dataPoints.map { mutableListOf(it.first) }.toMutableList()
+
+        var iterations = 0
+
+        while (shouldRepeat) {
+            if (++iterations > 6000) throw IllegalStateException("More than 6000 cluster iterations")
+            // reset shouldRepeat to empty state
+            shouldRepeat = false
+            val clusterReverseMap = cluster.mapIndexed { index, pairs ->
+                Pair(index, pairs)
+            }.foldRight(mutableMapOf<Pair<Int, Int>, Int>()) { points, acc ->
+                points.second.forEach {
+                    acc[it] = points.first
+                }
+                acc
+            }
+            val neighbors: MutableMap<Int, Int> = mutableMapOf()
+
+            cluster.forEachIndexed { index, clusterPoints ->
+                clusterPoints.forEach { point ->
+                    val notFound = point.allDirectional().find {
+                        clusterReverseMap[it] != null
+                                && clusterReverseMap[it] != index
+                                && neighbors[clusterReverseMap[it]] == null
+                    }?.let {
+                        neighbors[clusterReverseMap[it]!!] = index
+                        shouldRepeat = true
+                        it
+                    } == null
+
+                    if (notFound && neighbors[index] == null) {
+                        neighbors[index] = index
+                    }
+                }
+            }
+
+            if (!shouldRepeat) break
+
+            val neighborsByIdReverseMap: MutableMap<Int, Int> = mutableMapOf()
+            val neighborsById: MutableMap<Int, MutableSet<Int>> = mutableMapOf()
+
+            val atomicInt = AtomicInteger(0)
+
+            neighbors.entries.forEach { (n1, n2) ->
+                val id = neighborsByIdReverseMap[n1] ?: neighborsByIdReverseMap[n2] ?: atomicInt.getAndIncrement()
+                val mutableSet = neighborsById[id] ?: mutableSetOf()
+                mutableSet += n1
+                mutableSet += n2
+                neighborsById[id] = mutableSet
+                neighborsByIdReverseMap[n1] = id
+                neighborsByIdReverseMap[n2] = id
+            }
+
+            cluster = neighborsById.values.map { index ->
+                index.flatMap { cluster[it] }.toMutableList()
+            }.toMutableList()
+        }
+
+        println("Done in $iterations iterations.")
+
+        return cluster
+    }
+}
+
+private fun Pair<Int, Int>.up(): Pair<Int, Int> {
+    return Pair(this.first - 1, this.second)
+}
+
+private fun Pair<Int, Int>.down(): Pair<Int, Int> {
+    return Pair(this.first + 1, this.second)
+}
+
+private fun Pair<Int, Int>.left(): Pair<Int, Int> {
+    return Pair(this.first, this.second - 1)
+}
+
+private fun Pair<Int, Int>.right(): Pair<Int, Int> {
+    return Pair(this.first, this.second + 1)
+}
+
+private fun Pair<Int, Int>.allDirectional(): List<Pair<Int, Int>> {
+    return listOf(this.up(), this.down(), this.left(), this.right())
 }
