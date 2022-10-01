@@ -5,6 +5,7 @@ fun main() {
     val board = BoardUtil.newBoard(5, 5)
     board[0, 2] = BoardItem.WHITE
     board[1, 2] = BoardItem.WHITE
+    board[2, 3] = BoardItem.WHITE
 
     board[3, 0] = BoardItem.WHITE
     board[3, 1] = BoardItem.WHITE
@@ -21,7 +22,10 @@ fun main() {
 
     val nothingness = BoardUtil.getAllNothingnessGroups(board)
 
-    println("Found ${nothingness.size} clusters")
+    val allClusterCanFitAnyPiece =
+        nothingness.all { clusterCoordsList -> BoardUtil.canClusterFitAnyPieces(clusterCoordsList.toSet(), emptySet()) }
+
+    println("allClusterCanFitAnyPiece: $allClusterCanFitAnyPiece\n")
 
     nothingness.forEachIndexed { index, pairs ->
         val item = boardItems[index % boardItems.size]
