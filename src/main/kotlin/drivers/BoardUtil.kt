@@ -102,47 +102,15 @@ object BoardUtil {
         }
     }
 
-    /**
-     * Checks if the board state can fill any of the remaining family pieces
-     */
-    fun isBoardValid(board: Board): Boolean {
-        val availablePieces = board.history.map { it.second.familyGroup }.toSortedSet()
-        return BoardItemPiece.PIECES_BY_FAMILY_GROUP.entries.all { (key, value) ->
-            availablePieces.contains(key) || ArrayUtil.anyIndexed(board.board.iterator()) { outer, row ->
-                ArrayUtil.anyIndexed(row.iterator()) { inner, _ ->
-                    value.any { canPutSuppressed(board, it, inner, outer) }
-                }
-            }
-        }
-    }
-
-    /**
-     * Checks if the board nothing state has at least one nothing neighbor
-     */
-    fun isBoardValid2(board: Board): Boolean {
-        for ((outer, row) in board.board.withIndex()) {
-            for ((inner, item) in row.withIndex()) {
-                if (item != BoardItem.NOTHING) continue
-                var nothing = 0
-                if (board[outer - 1, inner] == BoardItem.NOTHING) ++nothing
-                if (board[outer + 1, inner] == BoardItem.NOTHING) ++nothing
-                if (board[outer, inner - 1] == BoardItem.NOTHING) ++nothing
-                if (board[outer, inner + 1] == BoardItem.NOTHING) ++nothing
-                if (nothing == 0) return false
-            }
-        }
-        return true
-    }
-
     fun isBoardValid3(board: Board): Boolean {
-        val allNothingness = board.board.flatMapIndexed { outer, row ->
-            row.mapIndexed { inner, item ->
-                Pair(Pair(outer, inner), item)
-            }.filter { it.second == BoardItem.NOTHING }
-        }
-        return false
+        val nothingnessGroups = getAllNothingnessGroups(board)
+        val canSkip = board.history.map { it.second.familyGroup }.toSet()
+        return nothingnessGroups.all { clusterCoordsList -> canClusterFitAnyPieces(clusterCoordsList.toSet(), canSkip) }
     }
 
+    /**
+     * Returns groups of coordinates where each forms a nothingness region
+     */
     fun getAllNothingnessGroups(board: Board): List<List<Pair<Int, Int>>> {
         val dataPoints = board.board.flatMapIndexed { outer, row ->
             row.mapIndexed { inner, item ->
@@ -150,18 +118,16 @@ object BoardUtil {
             }.filter { it.second == BoardItem.NOTHING }
         }
 
-        var shouldRepeat = true
-
         // at first, set each spot into their own cluster
         var cluster: MutableList<MutableList<Pair<Int, Int>>> =
             dataPoints.map { mutableListOf(it.first) }.toMutableList()
 
         var iterations = 0
 
-        while (shouldRepeat) {
+        while (true) {
             if (++iterations > 6000) throw IllegalStateException("More than 6000 cluster iterations")
             // reset shouldRepeat to empty state
-            shouldRepeat = false
+            var shouldRepeat = false
             val clusterReverseMap = cluster.mapIndexed { index, pairs ->
                 Pair(index, pairs)
             }.foldRight(mutableMapOf<Pair<Int, Int>, Int>()) { points, acc ->
@@ -212,10 +178,37 @@ object BoardUtil {
             }.toMutableList()
         }
 
-        println("Done in $iterations iterations.")
+        val msg = "Done in $iterations iterations."
+        print(msg)
+        print("\b".repeat(msg.length))
 
         return cluster
     }
+
+    fun canClusterFitAnyPieces(
+        clusterCoords: Set<Pair<Int, Int>>,
+        except: Set<Int>,
+        onPieceFound: (Pair<Int, Int>, BoardItemPiece) -> Unit = { _, _ -> }
+    ): Boolean {
+        return BoardItemPiece.PIECES_BY_FAMILY_GROUP.any { (family, pieces) ->
+            !except.contains(family) && pieces.any { piece ->
+                clusterCoords.find { (y, x) ->
+                    piece.positions.map { (deltaY, deltaX) ->
+                        Pair(y + deltaY, x + deltaX)
+                    }.toSet().isSubsetOf(clusterCoords)
+                }.let {
+                    if (it != null) {
+                        onPieceFound(it, piece)
+                    }
+                    return it != null
+                }
+            }
+        }
+    }
+}
+
+private fun <E> Set<E>.isSubsetOf(predicate: Set<E>): Boolean {
+    return this.all { predicate.contains(it) }
 }
 
 private fun Pair<Int, Int>.up(): Pair<Int, Int> {
